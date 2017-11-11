@@ -4,73 +4,73 @@
 <script src="../renderer.js"></script>
 
 <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      <title>Larnx</title>
+    <title>Larnx</title>
+    <!-- This is a comment by Christina -->
+    <!-- Bootstrap core CSS -->
+    <link href="../Dependencies/vendor_sidebar/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-      <!-- Bootstrap core CSS -->
-      <link href="../Dependencies/vendor_sidebar/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-     <!-- Custom styles for this template -->
-     <link href="../Dependencies/css/simple-sidebar.css" rel="stylesheet">
-     <link rel="stylesheet" href="../Dependencies/font-awesome-4.7.0/css/font-awesome.min.css">
-     <!--<link rel="stylesheet" href="../Styles/video.css">-->
+    <!-- Custom styles for this template -->
+    <link href="../Dependencies/css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Dependencies/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="../Styles/video.css">-->
     <link href="http://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">
-                    <img alt="Brand" src="../Resources/logoTC.png" width="66" height="57" href="#menu-toggle" id="menu-toggle">
-                </a>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        <img alt="Brand" src="../Resources/logoTC.png" width="66" height="57" href="#menu-toggle" id="menu-toggle">
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <a href="#">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
           Larnx Core
         </a>
-      </li>
-      <li>
-        <a onclick="fileExplorer('2d')" href="#">Import 2D</a>
-      </li>
-      <li>
-        <a onclick="frameCapture()" href="#">Frame Capture</a>
-      </li>
-      <li>
-        <a onclick="execute()" href="#">Process</a>
-      </li>
-      <li>
-        <a href="https://github.com/Larnx">Manual</a>
-      </li>
-    </ul>
-  </div>
-  <!-- /#sidebar-wrapper -->
+                </li>
+                <li>
+                    <a onclick="fileExplorer('2d')" href="#">Import 2D</a>
+                </li>
+                <li>
+                    <a onclick="frameCapture()" href="#">Frame Capture</a>
+                </li>
+                <li>
+                    <a onclick="execute()" href="#">Process</a>
+                </li>
+                <li>
+                    <a href="https://github.com/Larnx">Manual</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-    <div class="container-fluid">
-      <h1>Larnx Core: Image Processing for Dysphagia</h1>
-        <p> We can use this whitespace for displaying all the image processing software goods :)
-        <p> Oh, and click the logo to toggle the side bar </p>
-        <p id="textArea"></p>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Larnx Core: Image Processing for Dysphagia</h1>
+                <p> We can use this whitespace for displaying all the image processing software goods :)
+                    <p> Oh, and click the logo to toggle the side bar </p>
+                    <p id="textArea"></p>
 
-        <div class="row">
-            <!--<div class="col">-->
-                <div id="video-container">
-                    <video id="vid_original_header" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
+                    <div class="row">
+                        <!--<div class="col">-->
+                        <div id="video-container">
+                            <video id="vid_original_header" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
                         <source id="vid_original_mp4" src="" type='video/mp4'>
                         <source id="vid_original_webm" src="" type="video/webm">
                         <p class="vjs-no-js">
@@ -78,68 +78,117 @@
                             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                         </p>
                     </video>
-                </div>
+                        </div>
+                        <!-- <a>What is this & where is it going to go</a> -->
+                        <div class="col">
+                            <div class="chart-container" style="position: absolute; height:40vh; width:80vw">
+                                <canvas id="myChart" width="200" height="200"></canvas>
+                            </div>
+                            <!-- <script>
+                                var ctx = document.getElementById("myChart");
+                                var myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                        datasets: [{
+                                            label: '# of Votes',
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255,99,132,1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: false,
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script> -->
+                        </div>
+                    </div>
+            </div>
             <!--</div>-->
             <!--<div class="col">-->
-                <!--<img id="frame_capture" class="pull-right" src=""/>-->
+            <!--<img id="frame_capture" class="pull-right" src=""/>-->
             <!--</div>-->
         </div>
     </div>
-  </div>
-</div>
+    </div>
+    </div>
 
 
+    <script src="../Scripts/charts.js"></script>
+    <script src="../Dependencies/vendor_sidebar/jquery/jquery.min.js"></script>
+    <script>
+        window.jQuery = window.$ = require('jquery');
+    </script>
+    <script src="../Dependencies/vendor_sidebar/popper/popper.min.js"></script>
+    <script src="../Dependencies/vendor_sidebar/bootstrap/js/bootstrap.min.js"></script>
 
-<script src="../Dependencies/vendor_sidebar/jquery/jquery.min.js"></script>
-<script>window.jQuery = window.$ = require('jquery');</script>
-<script src="../Dependencies/vendor_sidebar/popper/popper.min.js"></script>
-<script src="../Dependencies/vendor_sidebar/bootstrap/js/bootstrap.min.js"></script>
-
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
-<script>
-    $( document ).ready(function(){
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
-<script>
-    require('../renderer.js')
-</script>
-
-<script>
-//    const fs            = require("fs");
-//    function frameCapture(){
-//        var frame = captureVideoFrame('vid_original_header', 'png');
-//        fs.writeFile('temp.png',frame,'base64', function (error, data) {
-//            document.getElementById('frame_capture').setAttribute('src', frame.dataUri);
-//        });
-//
-//        var formData = new FormData();
-//        formData.append('file', frame.blob, 'frame_capture.' + frame.format);
-
-//        var request = new XMLHttpRequest();
-//        request.open('POST', '/api/upload', true);
-//        request.setRequestHeader('Content-Type', 'application/multipart/form-data; charset=UTF-8');
-//        request.send(formData);
-//    }
-</script>
-<script>
-    $( document ).ready(function(){
-        videoPlayer = videojs(document.getElementById('vid_original_header'), {}, function(){
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
         });
-    });
-</script>
-<script src="../node_modules/capture-video-frame/capture-video-frame.js"></script>
-<style>
-    .navbar-inverse{
-        color: #000;
-        background-color: #000;
-    }
-</style>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script>
+        require('../renderer.js')
+    </script>
+
+    <script>
+        //    const fs            = require("fs");
+        //    function frameCapture(){
+        //        var frame = captureVideoFrame('vid_original_header', 'png');
+        //        fs.writeFile('temp.png',frame,'base64', function (error, data) {
+        //            document.getElementById('frame_capture').setAttribute('src', frame.dataUri);
+        //        });
+        //
+        //        var formData = new FormData();
+        //        formData.append('file', frame.blob, 'frame_capture.' + frame.format);
+
+        //        var request = new XMLHttpRequest();
+        //        request.open('POST', '/api/upload', true);
+        //        request.setRequestHeader('Content-Type', 'application/multipart/form-data; charset=UTF-8');
+        //        request.send(formData);
+        //    }
+    </script>
+    <script>
+        $(document).ready(function() {
+            videoPlayer = videojs(document.getElementById('vid_original_header'), {}, function() {});
+        });
+    </script>
+    <script src="../node_modules/capture-video-frame/capture-video-frame.js"></script>
+    <style>
+        .navbar-inverse {
+            color: #000;
+            background-color: #000;
+        }
+    </style>
 
 </body>
 
