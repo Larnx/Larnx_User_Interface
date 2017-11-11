@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5066664e-3273-4353-b64c-ec60530f0f47" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Executables/Larnx.exe" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,19 +22,24 @@
             <state relative-caret-position="0">
               <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
 <<<<<<< HEAD
+<<<<<<< HEAD
               <folding />
 =======
               <folding>
                 <element signature="n#!!block;n#createWelcomeWindow#0" expanded="false" />
               </folding>
 >>>>>>> Small changes
+=======
+              <folding />
+>>>>>>> idea
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Views/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="425">
               <caret line="90" column="33" lean-forward="false" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
@@ -46,13 +51,19 @@
                 <element signature="n#script#8;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <marker date="1510431121438" expanded="false" signature="3284:3327" ph="..." />
               </folding>
+=======
+            <state relative-caret-position="281">
+              <caret line="88" column="35" lean-forward="false" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="35" />
+              <folding />
+>>>>>>> idea
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="renderer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="renderer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/renderer.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="-313">
               <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
@@ -68,6 +79,13 @@
                 <element signature="e#2481#2498#0" expanded="false" />
                 <element signature="e#2727#2743#0" expanded="false" />
 >>>>>>> Small changes
+=======
+            <state relative-caret-position="162">
+              <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#2681#2697#0" expanded="false" />
+>>>>>>> idea
               </folding>
             </state>
           </provider>
@@ -111,7 +129,11 @@
       <find>===</find>
 =======
       <find>original</find>
+<<<<<<< HEAD
 >>>>>>> Small changes
+=======
+      <find>===</find>
+>>>>>>> idea
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,6 +181,7 @@
   </component>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="95" />
     <option name="y" value="-12" />
@@ -175,6 +198,11 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-5" />
     <option name="y" value="257" />
+=======
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="95" />
+    <option name="y" value="-12" />
+>>>>>>> idea
     <option name="width" value="1732" />
     <option name="height" value="873" />
 >>>>>>> Small changes 2
@@ -196,12 +224,16 @@
     <panes>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <pane id="Scope" />
 >>>>>>> Small changes
       <pane id="Scratches" />
 =======
 >>>>>>> Small changes 2
+=======
+      <pane id="Scratches" />
+>>>>>>> idea
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -210,22 +242,32 @@
               <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
             </path>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <path>
               <item name="Larnx_User_Interface" type="b2602c69:ProjectViewProjectNode" />
               <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
 <<<<<<< HEAD
+=======
+            <path>
+              <item name="Larnx_User_Interface" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
+>>>>>>> idea
               <item name="Styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Larnx_User_Interface" type="b2602c69:ProjectViewProjectNode" />
               <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
               <item name="Views" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 =======
               <item name="Executables" type="462c0819:PsiDirectoryNode" />
 >>>>>>> Small changes
             </path>
 =======
 >>>>>>> Small changes 2
+=======
+            </path>
+>>>>>>> idea
           </expand>
           <select />
         </subPane>
@@ -237,8 +279,11 @@
 >>>>>>> Small changes
 =======
       <pane id="Scope" />
+<<<<<<< HEAD
       <pane id="Scratches" />
 >>>>>>> Small changes 2
+=======
+>>>>>>> idea
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,18 +297,18 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\css" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Executables" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\css" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
     </key>
   </component>
@@ -312,10 +357,12 @@
       <workItem from="1510166588988" duration="919000" />
       <workItem from="1510417604616" duration="3737000" />
       <workItem from="1510429342927" duration="644000" />
+      <workItem from="1510430391001" duration="485000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="72669000" />
@@ -325,6 +372,9 @@
 =======
     <option name="totallyTimeSpent" value="76902000" />
 >>>>>>> Small changes 2
+=======
+    <option name="totallyTimeSpent" value="77387000" />
+>>>>>>> idea
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -336,6 +386,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
 <<<<<<< HEAD
@@ -351,9 +402,14 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12219599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> Small changes 2
+=======
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10906217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> idea
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22173436" sideWeight="0.50641024" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -381,11 +437,15 @@
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23051591" sideWeight="0.49358973" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1098785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 =======
 >>>>>>> Small changes 2
+=======
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> idea
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -448,10 +508,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+<<<<<<< HEAD
           <folding>
             <element signature="n#script#8;n#body#0;n#html#0;n#!!top" expanded="false" />
             <marker date="1510431121438" expanded="false" signature="3284:3327" ph="..." />
           </folding>
+=======
+          <folding />
+>>>>>>> idea
         </state>
       </provider>
     </entry>
@@ -474,10 +538,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+<<<<<<< HEAD
           <folding>
             <element signature="n#script#8;n#body#0;n#html#0;n#!!top" expanded="false" />
             <marker date="1510431121438" expanded="false" signature="3284:3327" ph="..." />
           </folding>
+=======
+          <folding />
+>>>>>>> idea
         </state>
       </provider>
     </entry>
@@ -689,6 +757,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -709,6 +778,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> idea
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -720,15 +791,20 @@
 =======
         <state relative-caret-position="0">
           <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+<<<<<<< HEAD
           <folding>
             <element signature="n#!!block;n#createWelcomeWindow#0" expanded="false" />
 >>>>>>> Small changes
           </folding>
+=======
+          <folding />
+>>>>>>> idea
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="425">
           <caret line="90" column="33" lean-forward="false" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
@@ -746,6 +822,21 @@
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <marker date="1510167330201" expanded="true" signature="4505:4654" ph="..." />
 >>>>>>> Small changes
+=======
+        <state relative-caret-position="281">
+          <caret line="88" column="35" lean-forward="false" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/renderer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#2681#2697#0" expanded="false" />
+>>>>>>> idea
           </folding>
         </state>
       </provider>
