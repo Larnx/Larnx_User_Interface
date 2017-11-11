@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5066664e-3273-4353-b64c-ec60530f0f47" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Executables/Larnx.exe" afterPath="$PROJECT_DIR$/Executables/Larnx.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/renderer.js" afterPath="$PROJECT_DIR$/renderer.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Executables/Larnx.exe" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -160,6 +158,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="95" />
     <option name="y" value="-12" />
@@ -172,6 +171,13 @@
     <option name="width" value="1931" />
     <option name="height" value="382" />
 >>>>>>> Small changes
+=======
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-5" />
+    <option name="y" value="257" />
+    <option name="width" value="1732" />
+    <option name="height" value="873" />
+>>>>>>> Small changes 2
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -189,10 +195,13 @@
     </navigator>
     <panes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <pane id="Scope" />
 >>>>>>> Small changes
       <pane id="Scratches" />
+=======
+>>>>>>> Small changes 2
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,6 +209,7 @@
               <item name="Larnx_User_Interface" type="b2602c69:ProjectViewProjectNode" />
               <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
             <path>
               <item name="Larnx_User_Interface" type="b2602c69:ProjectViewProjectNode" />
               <item name="Larnx_User_Interface" type="462c0819:PsiDirectoryNode" />
@@ -214,14 +224,21 @@
               <item name="Executables" type="462c0819:PsiDirectoryNode" />
 >>>>>>> Small changes
             </path>
+=======
+>>>>>>> Small changes 2
           </expand>
           <select />
         </subPane>
       </pane>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="Scope" />
 =======
 >>>>>>> Small changes
+=======
+      <pane id="Scope" />
+      <pane id="Scratches" />
+>>>>>>> Small changes 2
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,18 +252,18 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Executables" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
-      <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI\css" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Executables" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies\img" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Resources" />
+      <recent name="C:\Users\Kestas\Desktop\Larnx_UI\Dependencies" />
       <recent name="C:\Users\Kestas\Desktop\Larnx_UI" />
     </key>
   </component>
@@ -294,16 +311,20 @@
       <workItem from="1510162136796" duration="626000" />
       <workItem from="1510166588988" duration="919000" />
       <workItem from="1510417604616" duration="3737000" />
-      <workItem from="1510429342927" duration="7000" />
+      <workItem from="1510429342927" duration="644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="72669000" />
 =======
     <option name="totallyTimeSpent" value="76265000" />
 >>>>>>> Small changes
+=======
+    <option name="totallyTimeSpent" value="76902000" />
+>>>>>>> Small changes 2
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,6 +336,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
 <<<<<<< HEAD
     <editor active="true" />
@@ -324,17 +346,27 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10958904" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> Small changes
+=======
+    <frame x="-5" y="257" width="1732" height="873" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12219599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Small changes 2
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22173436" sideWeight="0.50641024" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07598372" sideWeight="0.49358973" order="9" side_tool="false" content_ui="tabs" />
 =======
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.060869563" sideWeight="0.49358973" order="9" side_tool="false" content_ui="tabs" />
 >>>>>>> Small changes
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07598372" sideWeight="0.49358973" order="9" side_tool="false" content_ui="tabs" />
+>>>>>>> Small changes 2
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -348,9 +380,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23051591" sideWeight="0.49358973" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1098785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
+>>>>>>> Small changes 2
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
