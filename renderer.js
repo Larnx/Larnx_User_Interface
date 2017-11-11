@@ -42,13 +42,25 @@ function fileExplorer() {
 function execute() {
     const PROC = require('child_process').spawn('Executables/Larnx.exe', [document.getElementById("vid_original_header").getAttribute('data-video-path')]);
 
-    PROC.stdout.on('data', function(data) {});
+    PROC.stdout.on('data', function(data)
+    {
+        console.log(data);
+    });
 
-    PROC.stderr.on("data", function(data) {});
+    PROC.stderr.on("data", function (data)
+    {
+        console.log(data);
+    });
 
-    PROC.on('close', function(data) {});
+    PROC.on('close', function (data)
+    {
+        console.log(data);
+    });
 
-    PROC.on('exit', function(data) {});
+    PROC.on('exit', function (data)
+    {
+        console.log(data);
+    });
 }
 
 function saveFrame() {
