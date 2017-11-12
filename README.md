@@ -1,5 +1,8 @@
-# Larnx_UI
-The front end components of Larnx 
+# Larnx: A Software Tool for Dysphagia Assesment 
+![alt text](https://github.com/Larnx/Larnx_Back_End/blob/master/logoTC.png)
+
+# Larnx_User_Interface
+This repository holds the front-end user-interface components of Larnx. 
 
 To run this application,
 
