@@ -13,6 +13,7 @@ function render_index() {
     ipcRenderer.send('render_index');
 }
 
+
 function setWorkspace() {
     dialog.showOpenDialog({properties: ['openDirectory']}, function (dirName) {
         localStorage.WORKSPACE = dirName;
@@ -21,6 +22,7 @@ function setWorkspace() {
 
 function fileExplorer() {
     dialog.showOpenDialog(function (fileNames) {
+
         if (fileNames === undefined) return;
 
         var fileName = fileNames[0];
@@ -41,6 +43,7 @@ function fileExplorer() {
 
 function execute() {
     const PROC = require('child_process').spawn('Executables/Larnx.exe', [document.getElementById("vid_original_header").getAttribute('data-video-path')]);
+
 
     PROC.stdout.on('data', function(data)
     {
@@ -66,20 +69,16 @@ function execute() {
 function saveFrame() {
     const PROC = require('child_process').spawn('Executables/SaveFrame.exe',[ document.getElementById("vid_original_header").getAttribute('data-video-path') ]);
 
-    PROC.stdout.on('data', function(data)
-    {});
+    PROC.stdout.on('data', function(data) {});
 
-    PROC.stderr.on("data", function (data)
-    {});
+    PROC.stderr.on("data", function(data) {});
 
-    PROC.on('close', function (data)
-    {});
+    PROC.on('close', function(data) {});
 
-    PROC.on('exit', function (data)
-    {});
+    PROC.on('exit', function(data) {});
 }
 
-
+// This is just a comment 
 
 
 
