@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+S<!DOCTYPE html>
 <html lang="en">
 
 <script src="../renderer.js"></script>
@@ -23,7 +23,28 @@
         // Initialize and catalog local storage variables
         // 1. WORKSPACE
         localStorage.WORKSPACE = '';
+        chart;
     </script>
+
+    <script>
+        window.onload = function () {
+           chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Relative Residue Intensity"
+                },
+                data: [
+                    {
+                        type: "spline",
+                        dataPoints: []
+                    }
+                ]
+            });
+            chart.render();
+        }
+
+    </script>
+
+
 </head>
 
 <body>
@@ -55,7 +76,7 @@
         <a onclick="fileExplorer()" href="#">Import Video</a>
       </li>
       <li>
-        <a onclick="frameCapture()" href="#">Frame Capture</a>
+        <a onclick="saveFrame()" href="#">Frame Capture</a>
       </li>
       <li>
         <a onclick="execute()" href="#">Process</a>
@@ -71,11 +92,34 @@
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <h1>Larnx 2D: Image Processing for Dysphagia</h1>
-        <p id="textArea"></p>
+
+        <div><p></p></div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Current Workspace</h4>
+                        <p class="card-text" id="WorkSpace">Please select a workspace</p>
+                        <a onclick="setWorkspace()" ref="#" class="btn btn-primary">Select Workspace</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Current Video</h4>
+                        <p class="card-text" id="WorkVideo">Please select an endoscopy video</p>
+                        <a onclick="fileExplorer()" href="#" class="btn btn-primary">Select Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><p></p></div>
 
         <div class="row">
             <!--<div class="col">-->
-                <div id="video-container">
+                <div id="video-container" class="col-sm-6">
                     <video id="vid_original_header" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
                         <source id="vid_original_mp4" src="" type='video/mp4'>
                         <source id="vid_original_webm" src="" type="video/webm">
@@ -87,56 +131,16 @@
                         </div>
                         <!-- <a>What is this & where is it going to go</a> -->
                         <div class="col">
-                            <div class="chart-container" style="position: absolute; height:40vh; width:80vw">
-                                <canvas id="myChart" width="200" height="200"></canvas>
+
+                            <!--<div class="chart-container" style="position: absolute; height:40vh; width:80vw">-->
+                                <!--<canvas id="myChart" width="200" height="200"></canvas>-->
+                            <!--</div>-->
+                            <div id="chartContainer" style="height: 300px; width: 100%;">
                             </div>
-                            <!-- <script>
-                                var ctx = document.getElementById("myChart");
-                                var myChart = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                                        datasets: [{
-                                            label: '# of Votes',
-                                            data: [12, 19, 3, 5, 2, 3],
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255,99,132,1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        responsive: false,
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true
-                                                }
-                                            }]
-                                        }
-                                    }
-                                });
-                            </script> -->
+
                         </div>
                     </div>
             </div>
-            <!--</div>-->
-            <!--<div class="col">-->
-            <!--<img id="frame_capture" class="pull-right" src=""/>-->
-            <!--</div>-->
         </div>
     </div>
     </div>
@@ -165,30 +169,13 @@
     <script>
         require('../renderer.js')
     </script>
-
-    <script>
-        //    const fs            = require("fs");
-        //    function frameCapture(){
-        //        var frame = captureVideoFrame('vid_original_header', 'png');
-        //        fs.writeFile('temp.png',frame,'base64', function (error, data) {
-        //            document.getElementById('frame_capture').setAttribute('src', frame.dataUri);
-        //        });
-        //
-        //        var formData = new FormData();
-        //        formData.append('file', frame.blob, 'frame_capture.' + frame.format);
-
-        //        var request = new XMLHttpRequest();
-        //        request.open('POST', '/api/upload', true);
-        //        request.setRequestHeader('Content-Type', 'application/multipart/form-data; charset=UTF-8');
-        //        request.send(formData);
-        //    }
-    </script>
     <script>
         $(document).ready(function() {
             videoPlayer = videojs(document.getElementById('vid_original_header'), {}, function() {});
         });
     </script>
-    <script src="../node_modules/capture-video-frame/capture-video-frame.js"></script>
+    <script src="../Dependencies/Canvas/jquery.canvasjs.min.js"></script>
+    <script src="../Dependencies/Canvas/canvasjs.min.js"></script>
     <style>
         .navbar-inverse {
             color: #000;
@@ -234,3 +221,21 @@
 <!--<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>-->
 <!--<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>-->
 <!--<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>-->
+
+<!--<script>-->
+    <!--//    const fs            = require("fs");-->
+    <!--//    function frameCapture(){-->
+    <!--//        var frame = captureVideoFrame('vid_original_header', 'png');-->
+    <!--//        fs.writeFile('temp.png',frame,'base64', function (error, data) {-->
+    <!--//            document.getElementById('frame_capture').setAttribute('src', frame.dataUri);-->
+    <!--//        });-->
+    <!--//-->
+    <!--//        var formData = new FormData();-->
+    <!--//        formData.append('file', frame.blob, 'frame_capture.' + frame.format);-->
+
+    <!--//        var request = new XMLHttpRequest();-->
+    <!--//        request.open('POST', '/api/upload', true);-->
+    <!--//        request.setRequestHeader('Content-Type', 'application/multipart/form-data; charset=UTF-8');-->
+    <!--//        request.send(formData);-->
+    <!--//    }-->
+<!--</script>-->

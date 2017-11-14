@@ -1,8 +1,5 @@
-# Larnx: A Software Tool for Dysphagia Assesment 
-![alt text](https://github.com/Larnx/Larnx_Back_End/blob/master/logoTC.png)
-
-# Larnx_User_Interface
-This repository holds the front-end user-interface components of Larnx. 
+# Larnx_UI
+The front end components of Larnx 
 
 To run this application,
 
@@ -15,6 +12,6 @@ https://nodejs.org/en/
 
 4) Run application with: 
 
-WINDOWS     .\node_modules\\.bin\electron .
+WINDOWS     .\node_modules\.bin\electron .
 
 iOS         ./node_modules/.bin/electron .

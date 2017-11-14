@@ -16,6 +16,7 @@ function render_index() {
 function setWorkspace() {
     dialog.showOpenDialog({properties: ['openDirectory']}, function (dirName) {
         localStorage.WORKSPACE = dirName;
+        document.getElementById('WorkSpace').innerHTML = 'Current Workspace: ' + dirName;
     });
 }
 
@@ -32,24 +33,40 @@ function fileExplorer() {
             if (path.extname(fileName) == '.mp4') {
                 videoPlayer.reset();
                 //document.getElementById("vid_original_mp4").src="file:///" + fileName;
-                //document.getElementById("vid_original_header").setAttribute('data-video-path',fileName);
+                document.getElementById("vid_original_header").setAttribute('data-video-path',fileName);
                 videoPlayer.src({ type: "video/mp4", src: "file:///" + fileName });
+                document.getElementById('WorkVideo').innerHTML = 'Current Video: ' + fileName;
             }
         });
     });
 }
 
+function pushDataPoint(y_value) {
+    var length = chart.options.data[0].dataPoints.length;
+    //chart.options.title.text = "New DataPoint Added at the end";
+    var sum = 0;
+    for (var i = 0; i  < y_value.length; i++)
+    {
+        sum = sum + y_value[i];
+    }
+    chart.options.data[0].dataPoints.push({ y: sum / y_value.length });
+    chart.render();
+}
+
+
 function execute() {
-    const PROC = require('child_process').spawn('Executables/Larnx.exe', [document.getElementById("vid_original_header").getAttribute('data-video-path')]);
+    const PROC = require('child_process').spawn('Executables/Larnx_Back_End.exe', [ '1' , document.getElementById("vid_original_header").getAttribute('data-video-path') , localStorage.WORKSPACE ]);
 
     PROC.stdout.on('data', function(data)
     {
         console.log(data);
+        pushDataPoint(data);
     });
 
     PROC.stderr.on("data", function (data)
     {
         console.log(data);
+        pushDataPoint(data);
     });
 
     PROC.on('close', function (data)
@@ -64,19 +81,27 @@ function execute() {
 }
 
 function saveFrame() {
-    const PROC = require('child_process').spawn('Executables/SaveFrame.exe',[ document.getElementById("vid_original_header").getAttribute('data-video-path') ]);
+    const PROC = require('child_process').spawn('Executables/Larnx_Back_End.exe', [ '2' , document.getElementById("vid_original_header").getAttribute('data-video-path') , localStorage.WORKSPACE, '2500' ] );
 
     PROC.stdout.on('data', function(data)
-    {});
+    {
+        console.log(data);
+    });
 
     PROC.stderr.on("data", function (data)
-    {});
+    {
+        console.log(data);
+    });
 
     PROC.on('close', function (data)
-    {});
+    {
+        console.log(data);
+    });
 
     PROC.on('exit', function (data)
-    {});
+    {
+        console.log(data);
+    });
 }
 
 
