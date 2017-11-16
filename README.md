@@ -12,6 +12,6 @@ https://nodejs.org/en/
 
 4) Run application with: 
 
-WINDOWS     .\node_modules\.bin\electron .
+WINDOWS     .\node_modules\\.bin\electron .
 
 iOS         ./node_modules/.bin/electron .

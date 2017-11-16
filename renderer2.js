@@ -6,7 +6,7 @@ const ipcRenderer = require('electron').ipcRenderer;
 const dialog = remote.dialog; //require('electron').dialog;
 const fs = require("fs");
 const path = require('path');
-const videojs = require('video.js');
+//const videojs = require('video.js');
 const Chart = require('chart.js');
 const toastr = require('toastr');
 

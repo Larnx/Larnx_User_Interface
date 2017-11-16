@@ -9,6 +9,7 @@ const ipcMain = require('electron').ipcMain;
 // be closed automatically when the JavaScript object is garbage collected.
 var welcomeWindow; // Application begins on this window.
 var mainWindow;
+var modalWindow;
 
 function createMainWindow() {
     // Create the browser window.
