@@ -35,10 +35,10 @@
                 title: {
                     text: "Relative Residue Intensity"
                 },
-               axisX:{
-                   title : "Raw Intensity"
-               },
                axisY:{
+                   title : "Intensity (Arbitrary Units)"
+               },
+               axisX:{
                    title : "Datapoint"
                },
                 data: [
@@ -78,6 +78,9 @@
                 </li>
                 <li>
                     <a onclick="setWorkspace()" href="#">Set Workspace</a>
+                </li>
+                <li>
+                    <a onclick="beginEndoscope()" href="#">Record Endoscope</a>
                 </li>
                 <li>
                     <a onclick="fileExplorer()" href="#">Import Video</a>
@@ -184,6 +187,41 @@
                 <div class="modal-footer" id="add_button_here">
                     <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
                     <!--<button type="button" class="btn btn-primary" onclick="execute( document.getElementById('execute_fileName').value )">Proceed</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="endoscopeModal" tabindex="-1" role="dialog" aria-labelledby="endoscopeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="endoscopeModalLabel">3D Endoscope Hardware</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Warning: You are about to being a endoscopy session. <br>
+                        Please be sure of the following: <br>
+                        1) You are using a USB3 FPGA board with a 2-sensor endoscope. <br>
+                        2) The USB3 board is powered on, and connected to this computer with a USB and HDMI cable. <br>
+
+
+                    </p>
+                    <div class="form-group" id="endoscopeForm">
+                        <label for="execute_fileName">Endoscope Recording Name: </label>
+                        <input type="email" class="form-control" id="endoscopeFilename" aria-describedby="emailHelp" placeholder="default">
+                        <small id="endoscopeTip" class="form-text text-muted">Please enter the name you would like to save your endoscope videos as:</small>
+                    </div>
+
+                </div>
+                <div class="modal-footer" id="endoscopeButtons">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById('endoscopeFilename').value )">Begin Endoscopy Session</button>
                 </div>
             </div>
         </div>

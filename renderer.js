@@ -17,6 +17,11 @@ function render_index() {
     ipcRenderer.send('render_index');
 }
 
+
+function beginEndoscope() {
+    $('#endoscopeModal').modal('show');
+}
+
 function render_modal(method){
     switch(method)
     {
@@ -88,6 +93,35 @@ function pushDataPoint(y_value) {
 }
 
 /* ALL EXECUTABLE INTERFACING CODE BELOW */
+
+function NanEyeAPI(fileName){
+
+    var cmd = '"NanEye2D_FiberDemoUsb3_csharp.exe" "' + localStorage.WORKSPACE + '" "' + fileName + '"';
+
+    //const API = require('child_process').exec('"NanEye2D_FiberDemoUsb3_csharp.exe" "C:\\Users\\Kestas\\Desktop\\Larnx Workspace" "myVID"',{cwd:'Executables/NanEye_Packaged_Api/NanEye2D_FiberDemoUsb3_csharp/bin/x86/Release/'});
+    const API = require('child_process').exec(cmd,{cwd:'Executables/NanEye_Packaged_Api/NanEye2D_FiberDemoUsb3_csharp/bin/x86/Release/'});
+
+    API.stdout.on('data', function(data)
+    {
+        console.log(data);
+    });
+
+    API.stderr.on("data", function (data)
+    {
+        console.log(data);
+    });
+
+    API.on('close', function (data)
+    {
+        console.log(data);
+    });
+
+    API.on('exit', function (data)
+    {
+        console.log(data);
+        toastr.success(localStorage.WORKSPACE,'Endoscopy session complete! Output is written to:')
+    });
+}
 
 function execute(fileName) {
     const PROC = require('child_process').spawn('Executables/Larnx_Back_End.exe', [ '1' , document.getElementById("vid_original_header").getAttribute('data-video-path') , localStorage.WORKSPACE , fileName ]);
