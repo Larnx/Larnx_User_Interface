@@ -1,22 +1,27 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-const remote = require('electron').remote;
-const ipcRenderer = require('electron').ipcRenderer;
-const dialog = remote.dialog; //require('electron').dialog;
-const fs = require("fs");
-const path = require('path');
-const videojs = require('video.js');
-const Chart = require('chart.js');
-const toastr = require('toastr');
-
+const remote        = require('electron').remote;
+const ipcRenderer   = require('electron').ipcRenderer;
+const dialog        = remote.dialog; //require('electron').dialog;
+const fs            = require("fs");
+const path          = require('path');
+const videojs       = require('video.js');
+const Chart         = require('chart.js');
+const toastr        = require('toastr');
+const vidConverter  = require('handbrake-js');
 
 /* ALL USER INTERFACING CODE BELOW  */
+
+
 
 function render_index() {
     ipcRenderer.send('render_index');
 }
 
+function go_backwards(){
+    ipcRenderer.send('go_home');
+}
 
 function beginEndoscope() {
     $('#endoscopeModal').modal('show');
@@ -59,25 +64,106 @@ function setWorkspace() {
     });
 }
 
-function fileExplorer() {
+function fileExplorer(method) {
+    dialog.showOpenDialog(function (fileNames) {
+        if (fileNames === undefined) return;
+
+        switch(method)
+        {
+            case 'left_import':
+                var fileName = fileNames[0];
+                fs.readFile(fileName, 'base64', function(error, data) {
+                    if (path.extname(fileName) == '.jpg' || path.extname(fileName) == '.png') {
+                        document.getElementById("original").src = fileName;
+                    }
+
+                    if (path.extname(fileName) == '.mp4') {
+                        videoPlayer_left.reset();
+                        //document.getElementById("vid_original_mp4").src="file:///" + fileName;
+                        document.getElementById("vid_original_header_left").setAttribute('data-video-path',fileName);
+                        videoPlayer_left.src({ type: "video/mp4", src: "file:///" + fileName });
+                        document.getElementById('leftStatus').innerHTML = fileName;
+                        document.getElementById('video-container-left').setAttribute('active','true');
+                        updateCard();
+                    }
+                    if (path.extname(fileName) == '.avi') {
+                        videoPlayer_left.reset();
+                        //document.getElementById("vid_original_mp4").src="file:///" + fileName;
+                        document.getElementById("vid_original_header_left").setAttribute('data-video-path',fileName);
+                        videoPlayer_left.src({ type: "video/avi", src: "file:///" + fileName });
+                        document.getElementById('leftStatus').innerHTML = fileName;
+                        document.getElementById('video-container-left').setAttribute('active','true');
+                        updateCard();
+                    }
+                });
+                break;
+            case 'right_import':
+                var fileName = fileNames[0];
+                fs.readFile(fileName, 'base64', function(error, data) {
+                    if (path.extname(fileName) == '.jpg' || path.extname(fileName) == '.png') {
+                        document.getElementById("original").src = fileName;
+                    }
+
+                    if (path.extname(fileName) == '.mp4') {
+                        videoPlayer_right.reset();
+                        //document.getElementById("vid_original_mp4").src="file:///" + fileName;
+                        document.getElementById("vid_original_header_right").setAttribute('data-video-path',fileName);
+                        videoPlayer_right.src({ type: "video/mp4", src: "file:///" + fileName });
+                        document.getElementById('rightStatus').innerHTML = fileName;
+                        document.getElementById('video-container-right').setAttribute('active','true');
+                        updateCard();
+                    }
+                    if (path.extname(fileName) == '.avi') {
+                        videoPlayer_right.reset();
+                        //document.getElementById("vid_original_mp4").src="file:///" + fileName;
+                        document.getElementById("vid_original_header_right").setAttribute('data-video-path',fileName);
+                        videoPlayer_right.src({ type: "video/avi", src: "file:///" + fileName });
+                        document.getElementById('rightStatus').innerHTML = fileName;
+                        document.getElementById('video-container-right').setAttribute('active','true');
+                        updateCard();
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+
+    });
+}
+
+//TODO: Add error handlers: Do not allow folks to do ANYTHING without having a workspace selected first. Or auto-give them a workspace
+
+function convertVideo() {
     dialog.showOpenDialog(function (fileNames) {
         if (fileNames === undefined) return;
 
         var fileName = fileNames[0];
-        fs.readFile(fileName, 'base64', function(error, data) {
-            if (path.extname(fileName) == '.jpg' || path.extname(fileName) == '.png') {
-                document.getElementById("original").src = fileName;
-            }
+        var newName  = path.basename( fileName , path.extname(fileName) );
+        newName      = newName + '.mp4';
+        newName = path.join(localStorage.WORKSPACE , newName);
 
-            if (path.extname(fileName) == '.mp4') {
-                videoPlayer.reset();
-                //document.getElementById("vid_original_mp4").src="file:///" + fileName;
-                document.getElementById("vid_original_header").setAttribute('data-video-path',fileName);
-                videoPlayer.src({ type: "video/mp4", src: "file:///" + fileName });
-                document.getElementById('WorkVideo').innerHTML = 'Current Video: ' + fileName;
-            }
-        });
+        vidConverter.spawn({ input: fileName, output: newName })
+            .on('error', function(err){
+                console.log(err);
+            })
+            .on('start',function(){
+                //TODO: Add a modal with completion progress report.
+            })
+            .on('progress', function(progress){
+                console.log(
+                    'Percent complete: %s, ETA: %s',
+                    progress.percentComplete,
+                    progress.eta
+                    //TODO: Add a progress bar as implemented in Neptune :)
+                );
+            })
+            .on('complete',function(){
+                toastr.success(path.join(localStorage.WORKSPACE),'AVI successful converted to MP4. Output saved to::')
+            });
+
     });
+
+
 }
 
 function pushDataPoint(y_value) {
@@ -97,9 +183,7 @@ function pushDataPoint(y_value) {
 function NanEyeAPI(fileName){
 
     var cmd = '"NanEye2D_FiberDemoUsb3_csharp.exe" "' + localStorage.WORKSPACE + '" "' + fileName + '"';
-
-    //const API = require('child_process').exec('"NanEye2D_FiberDemoUsb3_csharp.exe" "C:\\Users\\Kestas\\Desktop\\Larnx Workspace" "myVID"',{cwd:'Executables/NanEye_Packaged_Api/NanEye2D_FiberDemoUsb3_csharp/bin/x86/Release/'});
-    const API = require('child_process').exec(cmd,{cwd:'Executables/NanEye_Packaged_Api/NanEye2D_FiberDemoUsb3_csharp/bin/x86/Release/'});
+    const API = require('child_process').exec(cmd,{cwd:'Executables/NanEyeAPI/'});
 
     API.stdout.on('data', function(data)
     {
@@ -202,7 +286,11 @@ function mapContour(fileName) {
     });
 }
 
-
+function updateCard(){
+    if( (document.getElementById('video-container-left').getAttribute('active') === 'true') && (document.getElementById('video-container-right').getAttribute('active') === 'true') ) {
+        document.getElementById('WorkVideo').innerHTML = 'Stereoscopic Recordings Imported.';
+    }
+}
 
 
 

@@ -26,6 +26,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "capture-video-frame": "^0.1.2",
     "chart.js": "^2.7.1",
+    "handbrake-js": "^2.2.2",
     "jquery": "^3.2.1",
     "popper.js": "^1.11.1",
     "react": "^16.0.0",

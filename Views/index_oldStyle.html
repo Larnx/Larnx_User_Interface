@@ -106,28 +106,43 @@
         <div class="container-fluid">
             <!--<h1>Larnx 2D: Image Processing for Dysphagia</h1>-->
 
-
             <div><p></p></div>
             <!--TODO: Add some CSS to the Workspace and Video selector elements -->
-            <div class="row controlSegment">
 
-                <div class="col-sm-6">
-                    <div class="card text-center">
+
+            <div><p></p></div>
+
+            <div class="row">
+                <div id="video-container-left" class="col-sm">
+
+                    <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Current Workspace</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Select your workspace environment</h6>
-                            <p class="card-text" id="WorkSpace"></p>
+                            <p class="card-text" id="WorkSpace">Please select a workspace</p>
                             <a onclick="setWorkspace()" ref="#" class="btn btn-primary">Select Workspace</a>
+                            <div class="row"><p></p><p></p></div>
                         </div>
                     </div>
+
+                    <video id="vid_original_header_left" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
+                        <source id="vid_original_mp4_left" src="" type='video/mp4'>
+                        <source id="vid_original_avi_left" src="" type="video/avi">
+                        <p class="vjs-no-js leftViewer">
+                            <a href="http://videojs.com/html5-video-support/" target="_blank"></a>
+                        </p>
+                    </video>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="card text-center">
+                <div id="video-container-right" class="col-sm">
+
+                    <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Current Video</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Import a pair of stereoscopic recordings</h6>
-                            <p class="card-text" id="WorkVideo"></p>
+                            <p class="card-text" id="WorkVideo">Import a pair of stereoscopic endoscopy recordings</p>
+                            <div class="row">
+                                <p id="leftStatus"></p>
+                                <p id="rightStatus"></p>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <a onclick="fileExplorer('left_import')" href="#" class="btn btn-primary">Import Left Recording</a>
@@ -138,30 +153,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-
-            <div><p></p></div>
-
-            <div class="row videoSegment">
-
-                <div id="video-container-left" class="col-sm-6" active="false">
-                    <video id="vid_original_header_left" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
-                        <source id="vid_original_mp4_left" src="" type='video/mp4'>
-                        <source id="vid_original_avi_left" src="" type="video/avi">
-                        <p class="vjs-no-js leftViewer">
-                            <a href="http://videojs.com/html5-video-support/" target="_blank"></a>
-                        </p>
-                    </video>
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p id="leftStatus"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="video-container-right" class="col-sm-6" active="false">
                     <video id="vid_original_header_right" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
                         <source id="vid_original_mp4_right" src="" type='video/mp4'>
                         <source id="vid_original_avi_right" src="" type="video/avi">
@@ -169,25 +161,18 @@
                             <a href="http://videojs.com/html5-video-support/" target="_blank"></a>
                         </p>
                     </video>
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p id="rightStatus"></p>
-                        </div>
-                    </div>
                 </div>
-
             </div>
 
-            <!--<div class="row dataSegment">-->
-                <!--<div class="col">-->
 
-                    <!--&lt;!&ndash;<div class="chart-container" style="position: absolute; height:40vh; width:80vw">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<canvas id="myChart" width="200" height="200"></canvas>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<div id="chartContainer" style="height: 300px; width: 100%;">-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+
+
+
+            <div class="row dataSegment">
+                <div class="col">
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                </div>
+            </div>
 
 
 
@@ -297,12 +282,6 @@
     .navbar-inverse {
         color: #000;
         background-color: #000;
-    }
-
-    .video-js{
-        position: relative !important;
-        width: 100% !important;
-        /*height: auto !important;*/
     }
 </style>
 
