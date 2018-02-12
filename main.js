@@ -9,8 +9,6 @@ const ipcMain = require('electron').ipcMain;
 // be closed automatically when the JavaScript object is garbage collected.
 var mainAppWindow;
 
-//TODO: change modal for waiting screen while endoscope loads
-
 function initiateApplication() {
     mainAppWindow = new BrowserWindow({ show:false });
     mainAppWindow.maximize();
@@ -23,7 +21,7 @@ function initiateApplication() {
     }));
 
     // Open the DevTools.
-    // mainAppWindow.webContents.openDevTools();
+    mainAppWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainAppWindow.on('closed', function() {

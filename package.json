@@ -28,6 +28,7 @@
     "chart.js": "^2.7.1",
     "handbrake-js": "^2.2.2",
     "jquery": "^3.2.1",
+    "open": "0.0.5",
     "popper.js": "^1.11.1",
     "react": "^16.0.0",
     "react-desktop": "^0.3.1",

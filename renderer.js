@@ -1,6 +1,7 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+const shell         = require('electron');
 const remote        = require('electron').remote;
 const ipcRenderer   = require('electron').ipcRenderer;
 const dialog        = remote.dialog; //require('electron').dialog;
@@ -10,10 +11,16 @@ const videojs       = require('video.js');
 const Chart         = require('chart.js');
 const toastr        = require('toastr');
 const vidConverter  = require('handbrake-js');
+const open          = require('open');
+
+
+
 
 /* ALL USER INTERFACING CODE BELOW  */
-
-
+function openExternal(link){
+    console.log('Opening: ',link);
+    open(link);
+}
 
 function render_index() {
     ipcRenderer.send('render_index');
@@ -24,6 +31,35 @@ function go_backwards(){
 }
 
 function beginEndoscope() {
+    $('#endoscopeModal').html('    <div class="modal-dialog" role="document">\n' +
+        '        <div class="modal-content">\n' +
+        '            <div class="modal-header" id="endoscopeHeader">\n' +
+        '                <h5 class="modal-title" id="endoscopeModalLabel">3D Endoscope Hardware</h5>\n' +
+        '                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+        '                    <span aria-hidden="true">&times;</span>\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="modal-body" id="endoscopeBody">\n' +
+        '                <p>\n' +
+        '                    You are about to being a endoscopy session. <br>\n' +
+        '                    Please be sure of the following: <br><br>\n' +
+        '                    1) You are using a USB3 FPGA board with a 2-sensor endoscope. <br>\n' +
+        '                    2) The USB3 board is powered on, and connected to this computer with a USB and HDMI cable. <br>\n' +
+        '                    3) Ensure the USB3 board has its LED indicator blinking green. <br>\n' +
+        '                </p>\n' +
+        '                <div class="form-group" id="endoscopeForm">\n' +
+        '                    <label for="execute_fileName">Endoscope Recording Name: </label>\n' +
+        '                    <input type="email" class="form-control" id="endoscopeFilename" aria-describedby="emailHelp" placeholder="default">\n' +
+        '                    <small id="endoscopeTip" class="form-text text-muted">Please enter the name you would like to save your endoscope videos as:</small>\n' +
+        '                </div>\n' +
+        '\n' +
+        '            </div>\n' +
+        '            <div class="modal-footer" id="endoscopeButtons">\n' +
+        '                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>\n' +
+        '                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById(\'endoscopeFilename\').value )">Open Endoscope Feed</button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </div>');
     $('#endoscopeModal').modal('show');
 }
 
@@ -131,7 +167,6 @@ function fileExplorer(method) {
     });
 }
 
-//TODO: Add error handlers: Do not allow folks to do ANYTHING without having a workspace selected first. Or auto-give them a workspace
 
 function convertVideo() {
     dialog.showOpenDialog(function (fileNames) {
@@ -181,9 +216,23 @@ function pushDataPoint(y_value) {
 /* ALL EXECUTABLE INTERFACING CODE BELOW */
 
 function NanEyeAPI(fileName){
+    var cmd     = '"NanEye2D_FiberDemoUsb3_csharp.exe" "' + localStorage.WORKSPACE + '" "' + fileName + '"';
+    const API   = require('child_process').exec(cmd,{cwd:'Executables/NanEyeAPI/'});
+    var link    = 'https://www.awaiba.com/software';
 
-    var cmd = '"NanEye2D_FiberDemoUsb3_csharp.exe" "' + localStorage.WORKSPACE + '" "' + fileName + '"';
-    const API = require('child_process').exec(cmd,{cwd:'Executables/NanEyeAPI/'});
+
+    $('#endoscopeModalLabel').html('3D Endoscope Hardware - Endoscope Feed Initiated');
+    $('#endoscopeBody').html('                <p>\n' +
+        '                    Opening Endoscope Hardware <br>\n' +
+        '                    Please wait a moment... <br><br>\n' +
+        '                    If the endoscope visualizer does not open after a minute, <br>\n' +
+        '                    make sure the USB3 led indicator is blinking green. <br>\n' +
+        '                    Also make sure the USB3 is recognized by your computers device drivers.<br>\n' +
+        '                    If the above is okay, try restarting your PC. Please see NanEye USB3 User Manual<br>\n' +
+        '                    for more information.<br>\n' +
+        '                </p>\n'+
+        '<a href="">NanEye User Manual and Information</a>');
+    $('#endoscopeButtons').html('<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>');
 
     API.stdout.on('data', function(data)
     {
@@ -203,7 +252,14 @@ function NanEyeAPI(fileName){
     API.on('exit', function (data)
     {
         console.log(data);
-        toastr.success(localStorage.WORKSPACE,'Endoscopy session complete! Output is written to:')
+        toastr.success(localStorage.WORKSPACE,'Endoscopy session complete! Output is written to:');
+
+        $('#endoscopeModalLabel').html('3D Endoscope Hardware - Endoscope Recording Completed');
+        $('#endoscopeBody').html('                <p>\n' +
+            '                    Endoscope Session Completed \n<br><br>' +
+            '                    All recordings have been saved to your workspace: ' + localStorage.WORKSPACE + '<br>\n');
+        $('#endoscopeButtons').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n' +
+            '                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById(\'endoscopeFilename\').value )">Open Endoscope Feed</button>');
     });
 }
 
@@ -289,22 +345,59 @@ function mapContour(fileName) {
 function updateCard(){
     if( (document.getElementById('video-container-left').getAttribute('active') === 'true') && (document.getElementById('video-container-right').getAttribute('active') === 'true') ) {
         document.getElementById('WorkVideo').innerHTML = 'Stereoscopic Recordings Imported.';
+
+        $('#playpause_module').css('visibility','visible');
+        $('#frameCap_module').css('visibility','visible');
     }
 }
 
+function updateProgress(percentComplete){
 
+    if(percentComplete == 0)
+    {
+        $('#progressBar').html('<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>');
+    } else {
+        $('#progressBar').html('<div class="progress-bar" role="progressbar" style="width: ' + percentComplete + '%" aria-valuenow="25" aria-valuemin=' + percentComplete + ' aria-valuemax="100"></div>');
+    }
 
+}
 
-// Deprecated scripts, notes, trash. Please remove in <MASTER> branch
+function simulateProgress(){
+    var i;
+    for(i = 0; i < 100; i++){
+        sleep(100);
+        updateProgress(i);
+    }
+    sleep(2000);
+    updateProgress(0);
+}
 
-// FROM RENDER.js
-// document.getElementById("vid_original").type='video/mp4';
-// var videoPlayer = videojs(document.getElementById('vid_original_header'), {}, function(){
-//     this.src({type: "video/mp4", src: "file:///" + fileName});
-// });
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
+}
 
-// FROM index.js
-//        videojs('vid_original_header').ready(function(){
-//            videoPlayer = this;
-//            videoPlayer.src();
-//        });
+function playVideo(){
+    videoPlayer_left.play();
+    videoPlayer_right.play();
+    //$('#playpause').attr('onclick',stopVideo());
+    //$('#playpause').html('Pause Stereoscopic Recording');
+}
+
+function pauseVideo(){
+    videoPlayer_left.pause();
+    videoPlayer_right.pause();
+    //$('#playpause').attr('onclick',playVideo());
+    //$('#playpause').html('Play Stereoscopic Recording');
+}
+
+function stereoFrameCap(){
+    // Time is in seconds
+    var time_left = videoPlayer_left.currentTime();
+    var time_right = videoPlayer_right.currentTime();
+
+}
