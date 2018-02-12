@@ -337,9 +337,9 @@ function updateCard(video_id){
 
         $('#playpause_module').css('visibility','visible');
         $('#frameCap_module').css('visibility','visible');
-        toastr.success(localStorage.WORKSPACE,'Good to go; both stereoscopic images are uploaded!')
+        toastr.success(localStorage.WORKSPACE,'Good to go! Both stereoscopic images are uploaded!')
     } else {
-        toastr.info(localStorage.WORKSPACE,'You have set one stereoscopic video; make sure to upload both!')
+        toastr.info(localStorage.WORKSPACE,'You have set one stereoscopic video. Make sure to upload both!')
     }
 }
 
