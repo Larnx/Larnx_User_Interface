@@ -299,8 +299,9 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Hello! We've noticed you have not set a workspace environment.<br>
-                    Please set a workspace; this will be the directory where all your <br>
+                    Hello! <br>
+                    We have noticed that you have not set a workspace environment yet.<br><br>
+                    Please set a workspace, this will be the directory where all your <br>
                     outputs are saved to. <br> <br>
                     You can always set the workspace later from the main page.
                 </p>
@@ -359,6 +360,13 @@
         /*height: auto !important;*/
     }
 </style>
+
+<script>
+    main.webContents.on('new-window', function(e, url) {
+        e.preventDefault();
+        require('electron').shell.openExternal(url);
+    });
+</script>
 
 </body>
 

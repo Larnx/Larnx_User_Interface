@@ -1,6 +1,3 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
 const shell         = require('electron');
 const remote        = require('electron').remote;
 const ipcRenderer   = require('electron').ipcRenderer;
@@ -14,9 +11,6 @@ const vidConverter  = require('handbrake-js');
 const open          = require('open');
 
 
-
-
-/* ALL USER INTERFACING CODE BELOW  */
 function openExternal(link){
     console.log('Opening: ',link);
     open(link);
@@ -97,6 +91,7 @@ function setWorkspace() {
     dialog.showOpenDialog({properties: ['openDirectory']}, function (dirName) {
         localStorage.WORKSPACE = dirName;
         document.getElementById('WorkSpace').innerHTML = 'Current Workspace: ' + dirName;
+        toastr.success(localStorage.WORKSPACE,'Workspace environment set!')
     });
 }
 
@@ -167,7 +162,6 @@ function fileExplorer(method) {
     });
 }
 
-
 function convertVideo() {
     dialog.showOpenDialog(function (fileNames) {
         if (fileNames === undefined) return;
@@ -195,10 +189,7 @@ function convertVideo() {
             .on('complete',function(){
                 toastr.success(path.join(localStorage.WORKSPACE),'AVI successful converted to MP4. Output saved to::')
             });
-
     });
-
-
 }
 
 function pushDataPoint(y_value) {
@@ -212,8 +203,6 @@ function pushDataPoint(y_value) {
     chart.options.data[0].dataPoints.push({ y: sum / y_value.length });
     chart.render();
 }
-
-/* ALL EXECUTABLE INTERFACING CODE BELOW */
 
 function NanEyeAPI(fileName){
     var cmd     = '"NanEye2D_FiberDemoUsb3_csharp.exe" "' + localStorage.WORKSPACE + '" "' + fileName + '"';
@@ -342,12 +331,15 @@ function mapContour(fileName) {
     });
 }
 
-function updateCard(){
+function updateCard(video_id){
     if( (document.getElementById('video-container-left').getAttribute('active') === 'true') && (document.getElementById('video-container-right').getAttribute('active') === 'true') ) {
         document.getElementById('WorkVideo').innerHTML = 'Stereoscopic Recordings Imported.';
 
         $('#playpause_module').css('visibility','visible');
         $('#frameCap_module').css('visibility','visible');
+        toastr.success(localStorage.WORKSPACE,'Good to go; both stereoscopic images are uploaded!')
+    } else {
+        toastr.info(localStorage.WORKSPACE,'You have set one stereoscopic video; make sure to upload both!')
     }
 }
 
