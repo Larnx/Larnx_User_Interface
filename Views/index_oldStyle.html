@@ -82,15 +82,15 @@
                 <a onclick="convertVideo()" href="#">Convert AVI to MP4</a>
             </li>
             <li>
-                <a onclick="render_modal('saveFrame')" href="#">Frame Capture</a>
+                <a onclick="preExecuteModal('saveFrame')" href="#">Frame Capture</a>
                 <!--<a onclick="saveFrame()" href="#">Frame Capture</a>-->
             </li>
             <li>
-                <a onclick="render_modal('trackContour')" href="#">Contour Tracking</a>
+                <a onclick="preExecuteModal('trackContour')" href="#">Contour Tracking</a>
                 <!--<a onclick="saveFrame()" href="#">Frame Capture</a>-->
             </li>
             <li>
-                <a onclick="render_modal('execute')" href="#">Residue Segmentation</a>
+                <a onclick="preExecuteModal('execute')" href="#">Residue Segmentation</a>
                 <!--<a onclick="execute()" href="#">Process</a>-->
             </li>
             <li>
@@ -107,8 +107,6 @@
             <!--<h1>Larnx 2D: Image Processing for Dysphagia</h1>-->
 
             <div><p></p></div>
-            <!--TODO: Add some CSS to the Workspace and Video selector elements -->
-
 
             <div><p></p></div>
 
@@ -241,7 +239,7 @@
             </div>
             <div class="modal-footer" id="endoscopeButtons">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById('endoscopeFilename').value )">Begin Endoscopy Session</button>
+                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById('endoscopeFilename').value , 'normal' )">Begin Endoscopy Session</button>
             </div>
         </div>
     </div>

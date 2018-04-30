@@ -11,6 +11,7 @@
 
     <title>Larnx</title>
     <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="../Dependencies/vendor_sidebar/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -23,11 +24,13 @@
     <script src="../node_modules/toastr/build/toastr.min.js"></script>
 
     <script>
-        /* Initialize and catalog local storage variables + globals */
-        // 1. WORKSPACE
         localStorage.WORKSPACE = '';
         chart;
     </script>
+
+    <!--<link rel='stylesheet' href="../Styles/webcamStyles.css" type="text/css">-->
+    <!--<script src="../Scripts/webcam.js"></script>-->
+
     <script>
         window.onload = function () {
             chart = new CanvasJS.Chart("chartContainer", {
@@ -64,47 +67,63 @@
                     <img alt="Brand" src="../Resources/logoTC.png" width="66" height="57" href="#menu-toggle" id="menu-toggle" data-toggle="tooltip" data-placement="bottom" title="Toggle Sidebar">
                 </a>
             </div>
+            <div style="list-style:none; margin:10px; float: right;">
+                <a onclick="load2D()">
+                    <img alt="Brand" src="../Resources/2d.png" width="66" height="57" href="#menu-toggle"  data-toggle="tooltip" data-placement="bottom" title="Toggle 2D">
+                </a>
+                <a>
+                    <img alt="Brand" src="../Resources/3dE.png" width="66" height="57" href="#menu-toggle"  data-toggle="tooltip" data-placement="bottom" title="Toggle 3D">
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             <li class="sidebar-brand" data-toggle="tooltip" data-placement="right" title="Go back to main menu">
                 <a href="#" onclick="go_backwards()" >
                     Larnx Home
                 </a>
             </li>
+            <div class="dropdown-divider"></div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             <li>
                 <a onclick="beginEndoscope()" href="#" data-toggle="tooltip" data-placement="right" title="Start endoscope feed, record session">Open Endoscope</a>
             </li>
+            <div class="dropdown-divider"></div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             <li>
-                <a onclick="convertVideo()" href="#" data-toggle="tooltip" data-placement="right" title="Convert .avi format videos to .mp4">Convert AVI to MP4</a>
+                <a onclick="calibrate('step0')" href="#" data-toggle="tooltip" data-placement="right" title="Run a calibration algorithm for the endoscope">Calibrate 3D Video</a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <li>
+                <a onclick="preExecuteModal('thresholdHSV')" href="#" data-toggle="tooltip" data-placement="right" title="Isolate residue in the imported video by color hue">Isolate Residue</a>
             </li>
             <li>
-                <a onclick="render_modal('saveFrame')" href="#" data-toggle="tooltip" data-placement="right" title="Quick save stereoscopic frame">Frame Capture</a>
-                <!--<a onclick="saveFrame()" href="#">Frame Capture</a>-->
+                <a onclick="preExecuteModal('contourMap')" href="#" data-toggle="tooltip" data-placement="right" title="Produces a contour mapping of isolated residue">Residue Contour Map</a>
             </li>
             <li>
-                <a onclick="render_modal('trackContour')" href="#" data-toggle="tooltip" data-placement="right" title="Apply contour tracking algorithm">Contour Tracking</a>
-                <!--<a onclick="saveFrame()" href="#">Frame Capture</a>-->
+                <a onclick="preExecuteModal('depthMap')" href="#" data-toggle="tooltip" data-placement="right" title="Produce a depth map using a stereoscopic recording">Residue Depth Map</a>
             </li>
-            <li>
-                <a onclick="render_modal('execute')" href="#" data-toggle="tooltip" data-placement="right" title="Apply residue segmentation algorithm">Residue Segmentation</a>
-                <!--<a onclick="execute()" href="#">Process</a>-->
-            </li>
+            <div class="dropdown-divider"></div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             <li>
                 <a href="https://github.com/Larnx" data-toggle="tooltip" data-placement="right" title="Visit Github manual pages">Help</a>
             </li>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
+
+
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
         <div class="container-fluid">
-            <!--<h1>Larnx 2D: Image Processing for Dysphagia</h1>-->
 
             <div class="row" style="margin-top: 10px; margin-bottom: 20px" >
                 <div class="col-md-12">
@@ -113,7 +132,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div><p></p></div>
             <div class="row controlSegment">
@@ -151,12 +169,13 @@
 
             <div><p></p></div>
 
-            <div class="row videoSegment">
+            <div class="row videoSegment" id="primary">
 
                 <div id="video-container-left" class="col-sm-6" active="false">
                     <video id="vid_original_header_left" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
                         <source id="vid_original_mp4_left" src="" type='video/mp4'>
                         <source id="vid_original_avi_left" src="" type="video/avi">
+                        <source id="vid_original_m4v_left" src="" type="video/m4v">
                         <p class="vjs-no-js leftViewer">
                             <a href="http://videojs.com/html5-video-support/" target="_blank"></a>
                         </p>
@@ -172,6 +191,7 @@
                     <video id="vid_original_header_right" class="video-js vjs-default-skin" controls preload="auto" width="640" height="640" poster="../Resources/g.jpg" data-video-path="">
                         <source id="vid_original_mp4_right" src="" type='video/mp4'>
                         <source id="vid_original_avi_right" src="" type="video/avi">
+                        <source id="vid_original_m4v_right" src="" type="video/m4v">
                         <p class="vjs-no-js rightViewer">
                             <a href="http://videojs.com/html5-video-support/" target="_blank"></a>
                         </p>
@@ -185,19 +205,96 @@
 
             </div>
 
-            <div class="row" style="margin-top: 20px; margin-bottom: 20px" >
-                <div class="col-md-12">
-                    <div class="card text-center">
+
+            <!--<div class="row videoSegmentSecondary d-none" id="secondary">-->
+
+                <!--<div id="videoSecondary" class="col-sm-12" active="false">-->
+                    <!--&lt;!&ndash;<video id="vidSecondary" class="video-js vjs-default-skin" controls preload="auto" width="640*2" height="640" poster="../Resources/g.jpg" data-video-path="" autoplay="true"></video>&ndash;&gt;-->
+
+
+                    <!--<div id = 'theatreMode' class = 'theatreMode'></div>-->
+                    <!--<div id = 'dragableZone' class = 'dragableZone'>Click to Drag</div>-->
+                    <!--<div id = 'closeButton' class = 'closeButton'></div>-->
+                    <!--<div id = 'toggleVideoSource' class = 'toggleVideoSource'></div>-->
+                    <!--<video id = 'liveVideo' class = 'liveVideo' autoplay='true'></video>-->
+
+                    <!--<div class="card text-center">-->
+                        <!--<p><select name="dropdownCam" id="dropdownCam"></select></p>-->
+                        <!--<div class="card-body">-->
+                            <!--<h5 class="card-subtitle mb-2 text-muted"  id="statusSecondary"></h5>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+            <!--<script>-->
+                <!--function toggleDiv(){-->
+                    <!--var primary = document.getElementById('primary');-->
+                    <!--var secondary = document.getElementById('secondary');-->
+
+                    <!--if ( $("#primary").hasClass("d-none") ){-->
+                        <!--$("#primary").removeClass("d-none");-->
+                        <!--$("#secondary").addClass("d-none");-->
+                    <!--} else {-->
+                        <!--$("#primary").addClass("d-none");-->
+                        <!--$("#secondary").removeClass("d-none");-->
+                        <!--beginCam();-->
+                    <!--}-->
+
+                <!--}-->
+            <!--</script>-->
+
+
+
+
+
+            <div id="accordion" style="margin-top: 20px; margin-bottom: 20px">
+
+                <div class="card text-center" style="margin-top: 10px; margin-bottom: 10px">
+                    <div class="card-header" id="headingOne">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Video Playback Controls
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                            <h4 class="card-title">Command Center</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">3D Video Processing Tools and Data-Feedback</h6>
+                            <h4 class="card-title">Video Playback</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Change playback settings here</h6>
                             <br>
-                            <div class="row" id="playpause_module" style="visibility: hidden">
+                            <div class="row" id="playpause_module" style="visibility: hidden; margin-top: 10px;">
                                 <div class="col-sm-6 text-center">
-                                    <a id="play" onclick="playVideo()" ref="#" class="btn btn-outline-success">Play Stereoscopic Recording</a>
+                                    <a id="play" onclick="playVideo()" ref="#" title="Play both stereoscopic video feeds simultaneously" class="btn btn-outline-success">Play Stereoscopic Recording</a>
                                 </div>
                                 <div class="col-sm-6 text-center">
-                                    <a id="pause" onclick="pauseVideo()" ref="#" class="btn btn-outline-warning">Pause Stereoscopic Recording</a>
+                                    <a id="pause" onclick="pauseVideo()" ref="#" title="Pause both stereoscopic video feeds simultaneously" class="btn btn-outline-warning">Pause Stereoscopic Recording</a>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card text-center" style="margin-top: 10px; margin-bottom: 10px">
+                    <div class="card-header" id="headingTwo">
+                        <h3 class="mb-0" >
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Video Manipulation Controls
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <h4 class="card-title">Video Modification</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Trim, capture, or convert your videos here</h6>
+                            <br>
+                            <div class="row" id="genericMethods" style="visibility: visible; margin-top: 10px;">
+                                <div class="col-md-12 text-center">
+                                    <a id="convertVideo" onclick="convertVideo('mp4')" ref="#" title="Convert a .avi video into a .mp4 video" class="btn btn-outline-primary">Convert to MP4</a>
                                 </div>
                             </div>
                             <div class="row" id="frameCap_module" style="visibility: hidden; margin-top: 10px;">
@@ -205,27 +302,129 @@
                                     <a id="saveFrameBtn" onclick="stereoFrameCap()" ref="#" class="btn btn-outline-primary">Save Frame</a>
                                 </div>
                             </div>
+                            <div class="row">
+
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="card text-center" style="margin-top: 10px; margin-bottom: 10px">
+                    <div class="card-header" id="headingThree">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Video Data Processing Parameters
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <h4 class="card-title">Video Modification</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Trim, capture, or convert your videos here</h6>
+                            <br>
+
+                            <form>
+                                    <div class="form-group">
+                                        <label for="disparitiesSelect">Number of Disparities</label>
+                                        <select class="form-control mr-sm-2" id="disparitiesSelect">
+                                            <option selected>0</option>
+                                            <option value="16">16</option>
+                                            <option value="32">32</option>
+                                            <option value="48">48</option>
+                                            <option value="64">64</option>
+                                            <option value="80">80</option>
+                                            <option value="96">96</option>
+                                            <option value="112">112</option>
+                                            <option value="128">128</option>
+                                            <option value="144">144</option>
+                                            <option value="176">176</option>
+                                            <option value="192">192</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="mx-sm-3 mb-2">
+                                            <label for="blockSize">Block Size</label>
+                                            <input type="number" class="form-control" id="blockSize" placeholder="11" onchange="validateBlockSize()">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="minDisparitySelect">Minimum Disparity</label>
+                                        <select class="form-control mr-sm-2" id="minDisparitySelect">
+                                            <option selected>0</option>
+                                            <option value="-64">-64</option>
+                                            <option value="-48">-48</option>
+                                            <option value="-32">-32</option>
+                                            <option value="-16">-16</option>
+                                            <option value="0">0</option>
+                                            <option value="16">16</option>
+                                            <option value="32">32</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sampleRateSelect">Sample Rate</label>
+                                        <select class="form-control mr-sm-2" id="sampleRateSelect">
+                                            <option selected>50</option>
+                                            <option value="2">1</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="60">60</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="fillDirectory('center')" >Center Save Directory</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Enter file path to center folder" aria-label="" aria-describedby="basic-addon1" id="centerDir">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="fillDirectory('left')" >Left Save Directory</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Enter file path to left folder" aria-label="" aria-describedby="basic-addon1" id="leftDir">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="fillDirectory('right')" >Right Save Directory</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Enter file path to right folder" aria-label="" aria-describedby="basic-addon1" id="rightDir">
+                                    </div>
+
+                                    <!--<div class="col-auto my-1">-->
+                                        <!--<button class="btn btn-primary">Save Parameters</button>-->
+                                    <!--</div>-->
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <!--<div class="row dataSegment">-->
-                <!--<div class="col">-->
-
-                    <!--&lt;!&ndash;<div class="chart-container" style="position: absolute; height:40vh; width:80vw">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<canvas id="myChart" width="200" height="200"></canvas>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<div id="chartContainer" style="height: 300px; width: 100%;">-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+            <script type="text/javascript">
+                function validateBlockSize(){
+                    var input = document.getElementById('blockSize').value;
+                    if (input <= 0){
+                        input = 1;
+                    }
+                    if (input > 255){
+                        input = 255;
+                    }
+                    if (input % 2 != 1)
+                    {
+                        input = input - 1;
+                    }
+                    //$("#blockSize").setAttribute('onchange','');
+                    document.getElementById('blockSize').value = input;
+                    //$("#blockSize").setAttribute('onchange',validateBlockSize);
+                }
+            </script>
 
         </div>
     </div>
 </div>
-
-
 
 <div class="modal fade" id="executeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -249,12 +448,22 @@
 
             </div>
             <div class="modal-footer" id="add_button_here">
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
-                <!--<button type="button" class="btn btn-primary" onclick="execute( document.getElementById('execute_fileName').value )">Proceed</button>-->
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    @media (min-width: 768px) {
+        .modal-xl {
+            width: 90%;
+            max-width:1200px;
+        }
+    }
+</style>
+
+
+<div class="modal fade" id="calibrationModal" tabindex="-1" role="dialog" aria-labelledby="calibrationModalLabel" aria-hidden="true"></div>
 
 <div class="modal fade" id="endoscopeModal" tabindex="-1" role="dialog" aria-labelledby="endoscopeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -282,7 +491,7 @@
             </div>
             <div class="modal-footer" id="endoscopeButtons">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById('endoscopeFilename').value )">Open Endoscope Feed</button>
+                <button type="button" class="btn btn-primary" onclick="NanEyeAPI( document.getElementById('endoscopeFilename').value , 'normal' )">Open Endoscope Feed</button>
             </div>
         </div>
     </div>
@@ -291,7 +500,7 @@
 <div class="modal fade" id="workspacePromptModal" tabindex="-1" role="dialog" aria-labelledby="workspacePromptLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" >
                 <h5 class="modal-title" id="workspacePromptLabel">Select Working Directory</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -300,10 +509,9 @@
             <div class="modal-body">
                 <p>
                     Hello! <br>
-                    We have noticed that you have not set a workspace environment yet.<br><br>
-                    Please set a workspace, this will be the directory where all your <br>
-                    outputs are saved to. <br> <br>
-                    You can always set the workspace later from the main page.
+                    We've noticed that you have not set a workspace environment.<br><br>
+                    Please set a workspace, this will be the directory where all your outputs are saved to. <br> <br>
+                    You can always set your workspace later from the main page.
                 </p>
             </div>
             <div class="modal-footer">
@@ -338,7 +546,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        videoPlayer_left = videojs(document.getElementById('vid_original_header_left'), {}, function() {});
+        videoPlayer_left  = videojs(document.getElementById('vid_original_header_left'),  {}, function() {});
         videoPlayer_right = videojs(document.getElementById('vid_original_header_right'), {}, function() {});
 
         if(localStorage.WORKSPACE === undefined || localStorage.WORKSPACE == ''){
@@ -372,3 +580,57 @@
 
 </html>
 
+<!--<div class="row" style="margin-top: 20px; margin-bottom: 20px" >-->
+<!--<div class="col-md-12">-->
+<!--<div class="card text-center">-->
+<!--<div class="card-body">-->
+<!--<h4 class="card-title">Command Center</h4>-->
+<!--<h6 class="card-subtitle mb-2 text-muted">3D Video Processing Tools and Data-Feedback</h6>-->
+<!--<br>-->
+<!--<div class="row" id="genericMethods" style="visibility: visible; margin-top: 10px;">-->
+<!--<div class="col-md-12 text-center">-->
+<!--<a id="convertVideo" onclick="convertVideo('mp4')" ref="#" title="Convert a .avi video into a .mp4 video" class="btn btn-outline-primary">Convert to MP4</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row" id="playpause_module" style="visibility: hidden; margin-top: 10px;">-->
+<!--<div class="col-sm-6 text-center">-->
+<!--<a id="play" onclick="playVideo()" ref="#" title="Play both stereoscopic video feeds simultaneously" class="btn btn-outline-success">Play Stereoscopic Recording</a>-->
+<!--</div>-->
+<!--<div class="col-sm-6 text-center">-->
+<!--<a id="pause" onclick="pauseVideo()" ref="#" title="Pause both stereoscopic video feeds simultaneously" class="btn btn-outline-warning">Pause Stereoscopic Recording</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row" id="frameCap_module" style="visibility: hidden; margin-top: 10px;">-->
+<!--<div class="col-md-12 text-center">-->
+<!--<a id="saveFrameBtn" onclick="stereoFrameCap()" ref="#" class="btn btn-outline-primary">Save Frame</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!---->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row dataSegment">-->
+<!--<div class="col">-->
+
+<!--&lt;!&ndash;<div class="chart-container" style="position: absolute; height:40vh; width:80vw">&ndash;&gt;-->
+<!--&lt;!&ndash;<canvas id="myChart" width="200" height="200"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div id="chartContainer" style="height: 300px; width: 100%;">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<li>-->
+<!--<a onclick="render_modal('trackContour')" href="#" data-toggle="tooltip" data-placement="right" title="Apply contour tracking algorithm">Contour Tracking</a>-->
+<!--&lt;!&ndash;<a onclick="saveFrame()" href="#">Frame Capture</a>&ndash;&gt;-->
+<!--</li>-->
+<!--<li>-->
+<!--<a onclick="render_modal('execute')" href="#" data-toggle="tooltip" data-placement="right" title="Apply residue segmentation algorithm">Residue Segmentation</a>-->
+<!--&lt;!&ndash;<a onclick="execute()" href="#">Process</a>&ndash;&gt;-->
+<!--</li>-->
+<!--<li>-->
+<!--<a onclick="convertVideo()" href="#" data-toggle="tooltip" data-placement="right" title="Convert .avi format videos to .mp4">Convert AVI to MP4</a>-->
+<!--</li>-->

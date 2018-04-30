@@ -8,7 +8,7 @@ https://nodejs.org/en/
 
 2) Next, download or clone the repository to your local machine. 
 
-3) Within the application directory, run: "npm install". This will update all neccessary dependancies. 
+3) Within the application directory, run: "npm install". This will update all necessary dependencies
 
 4) Run application with: 
 

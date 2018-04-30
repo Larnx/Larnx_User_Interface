@@ -40,6 +40,14 @@ function goForward() {
     }));
 }
 
+function load2D() {
+    mainAppWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'Views/index_2d.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
+
 function goBackward() {
     mainAppWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'Views/welcome.html'),
@@ -78,51 +86,6 @@ ipcMain.on('go_home',function(event,arg){
     goBackward();
 });
 
-// function createMainWindow() {
-//     // Create the browser window.
-//     mainWindow = new BrowserWindow({ show: false });
-//     mainWindow.maximize();
-//     mainWindow.show();
-//
-//     // and load the index.html of the app.
-//     mainWindow.loadURL(url.format({
-//         pathname: path.join(__dirname, 'Views/index.html'),
-//         protocol: 'file:',
-//         slashes: true
-//     }));
-//
-//     // Open the DevTools.
-//     mainWindow.webContents.openDevTools();
-//
-//     // Emitted when the window is closed.
-//     mainWindow.on('closed', function() {
-//         // Dereference the window object, usually you would store windows
-//         // in an array if your app supports multi windows, this is the time
-//         // when you should delete the corresponding element.
-//         mainWindow = null
-//     })
-// }
-// function createWelcomeWindow() {
-//     // Create the browser window.
-//     welcomeWindow = new BrowserWindow({ show: false });
-//     welcomeWindow.maximize();
-//     welcomeWindow.show();
-//
-//     // and load the index.html of the app.
-//     welcomeWindow.loadURL(url.format({
-//         pathname: path.join(__dirname, 'Views/welcome.html'),
-//         protocol: 'file:',
-//         slashes: true
-//     }));
-//
-//     // Open the DevTools.
-//     // welcomeWindow.webContents.openDevTools();
-//
-//     // Emitted when the window is closed.
-//     welcomeWindow.on('closed', function() {
-//         // Dereference the window object, usually you would store windows
-//         // in an array if your app supports multi windows, this is the time
-//         // when you should delete the corresponding element.
-//         welcomeWindow = null
-//     })
-// }
+ipcMain.on('load2D',function(event,arg){
+    load2D();
+});
